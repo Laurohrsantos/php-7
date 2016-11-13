@@ -15,10 +15,11 @@
         "roave/security-advisories": "dev-master",
         "zendframework/zend-expressive": "^1.0",
         "zendframework/zend-expressive-helpers": "^2.0",
-        "zendframework/zend-stdlib": "^2.7 || ^3.0",
+        "zendframework/zend-stdlib": "~2.7.0",
         "zendframework/zend-expressive-aurarouter": "^1.0",
-        "zendframework/zend-servicemanager": "^2.7.3 || ^3.0",
-        "zendframework/zend-expressive-twigrenderer": "^1.0"
+        "zendframework/zend-servicemanager": "~2.7.3",
+        "zendframework/zend-expressive-twigrenderer": "^1.0",
+        "doctrine/doctrine-orm-module": "0.10.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^4.8",
@@ -27,7 +28,7 @@
     },
     "autoload": {
         "psr-4": {
-            "App\\": "src/App/"
+            "CodeEmailMKT\\": "src/CodeEmailMKT/"
         }
     },
     "autoload-dev": {

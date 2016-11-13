@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Action;
+namespace CodeEmailMKT\Action;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

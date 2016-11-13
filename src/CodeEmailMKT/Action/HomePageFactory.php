@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Action;
+namespace CodeEmailMKT\Action;
 
 use Interop\Container\ContainerInterface;
 use Zend\Expressive\Router\RouterInterface;
