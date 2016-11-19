@@ -2,7 +2,7 @@
 
 namespace CodeEmailMKT\Infrastructure;
 
-use CodeEmailMKT\Service\BootstrapInterface;
+use CodeEmailMKT\Domain\Service\BootstrapInterface;
 
 class Bootstrap implements BootstrapInterface
 {

@@ -1,0 +1,45 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <div class="col-xs-6 col-xs-offset-6 col-sm-4 col-sm-offset-8 col-md-3 col-md-offset-9 col-lg-2 col-lg-offset-10">
+                        <a href="{{ url('customer.list') }}" class="btn btn-block btn-primary">
+                            <i class="fa fa-reply"></i> Voltar
+                        </a>
+                    </div>
+                </div>
+
+                <div class="box-body">
+                    <form name="form" role="form" method="post" action="{{ 'customer.update', {id: customer.id} }}">
+                        <input type="hidden" class="form-control" name="_method" value="PUT">
+                        <div class="box-body">
+                            <div class="form-group">
+                                <label for="name">Nome:</label>
+                                <input type="text" class="form-control" name="name" value="{{ customer.name }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email:</label>
+                                <input type="email" class="form-control" name="email" required="required" value="{{ customer.email }}">
+                            </div>
+                            <div class="box-footer">
+                                <button class="btn btn-primary" type="submit">Editar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block title %}
+    Edição de Contato - {{ parent() }}
+{% endblock %}
+
+{% block page_header %}
+    Edição de Contato - {{ customer.name }}
+{% endblock %}

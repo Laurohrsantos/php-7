@@ -1,6 +1,6 @@
 <?php
 
-namespace CodeEmailMKT\Entity;
+namespace CodeEmailMKT\Domain\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -38,7 +38,7 @@ class Endereco
     private $estado;
 
     /**
-     * @ORM\ManyToOne(targetEntity="CodeEmailMKT\Entity\Cliente")
+     * @ORM\ManyToOne(targetEntity="CodeEmailMKT\Domain\Entity\Cliente")
      * @ORM\JoinColumn(name="cliente_id", referencedColumnName="id")
      */
     private $cliente;

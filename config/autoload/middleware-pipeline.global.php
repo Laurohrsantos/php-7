@@ -7,7 +7,7 @@ return [
         'factories' => [
             Helper\ServerUrlMiddleware::class => Helper\ServerUrlMiddlewareFactory::class,
             Helper\UrlHelperMiddleware::class => Helper\UrlHelperMiddlewareFactory::class,
-            \CodeEmailMKT\Action\BootstrapAction::class => \CodeEmailMKT\Action\BootstrapActionFactory::class,
+            \CodeEmailMKT\Application\Middleware\BootstrapMiddleware::class => \CodeEmailMKT\Application\Middleware\BootstrapMiddlewareFactory::class,
         ],
     ],
     // This can be used to seed pre- and/or post-routing middleware
@@ -41,7 +41,7 @@ return [
                 // - pre-conditions
                 // - modifications to outgoing responses
                 Helper\ServerUrlMiddleware::class,
-                \CodeEmailMKT\Action\BootstrapAction::class,
+                \CodeEmailMKT\Application\Middleware\BootstrapMiddleware::class,
             ],
             'priority' => 10000,
         ],

@@ -1,6 +1,6 @@
 <?php
 
-namespace CodeEmailMKT\Service;
+namespace CodeEmailMKT\Domain\Service;
 
 interface BootstrapInterface
 {
