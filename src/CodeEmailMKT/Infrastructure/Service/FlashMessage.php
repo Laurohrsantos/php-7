@@ -2,6 +2,7 @@
 
 namespace CodeEmailMKT\Infrastructure\Service;
 
+use Aura\Session\Segment;
 use Aura\Session\Session;
 use CodeEmailMKT\Domain\Service\FlashMessageInterface;
 
@@ -13,7 +14,7 @@ class FlashMessage implements FlashMessageInterface
      */
     private $session;
     /**
-     * @var AuraSession
+     * @var Segment
      */
     private $segment;
 

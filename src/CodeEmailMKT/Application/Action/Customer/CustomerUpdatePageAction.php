@@ -41,7 +41,7 @@ class CustomerUpdatePageAction
         $flash = $request->getAttribute('flash');
         $entity = $this->repository->find($id);
 
-        if ($request->getMethod() == 'POST'){
+        if ($request->getMethod() == 'PUT'){
 
             $data = $request->getParsedBody();
 

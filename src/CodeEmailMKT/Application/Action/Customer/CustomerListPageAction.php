@@ -8,6 +8,7 @@ use Psr\Http\Message\ResponseInterface;
 use Zend\Diactoros\Response\HtmlResponse;
 use Zend\Expressive\Template;
 use CodeEmailMKT\Domain\Persistence\CustomerRepositoryInterface;
+use CodeEmailMKT\Domain\Service\FlashMessageInterface;
 
 class CustomerListPageAction
 {

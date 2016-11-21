@@ -2,6 +2,7 @@
 
 namespace CodeEmailMKT\Application\Middleware;
 
+use CodeEmailMKT\Application\Middleware\BootstrapMiddleware;
 use CodeEmailMKT\Domain\Service\FlashMessageInterface;
 use CodeEmailMKT\Infrastructure\Bootstrap;
 use Interop\Container\ContainerInterface;

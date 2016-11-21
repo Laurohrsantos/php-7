@@ -4,6 +4,8 @@ use Zend\Expressive\Container\ApplicationFactory;
 use Zend\Expressive\Helper;
 use CodeEmailMKT\Infrastructure\Persistence\Doctrine\Repository\CustomerRepositoryFactory;
 use CodeEmailMKT\Domain\Persistence\CustomerRepositoryInterface;
+use CodeEmailMKT\Domain\Service\FlashMessageInterface;
+use CodeEmailMKT\Infrastructure\Service\FlashMessageFactory;
 
 return [
     // Provides application-wide services.
@@ -23,7 +25,7 @@ return [
             Helper\UrlHelper::class => Helper\UrlHelperFactory::class,
             CustomerRepositoryInterface::class => CustomerRepositoryFactory::class,
             \Aura\Session\Session::class => \DaMess\Factory\AuraSessionFactory::class,
-            \CodeEmailMKT\Domain\Service\FlashMessageInterface::class => \CodeEmailMKT\Infrastructure\Service\FlashMessageFactory::class,
+            FlashMessageInterface::class => FlashMessageFactory::class,
         ],
         'aliases' => [
             'configuration' => 'config', //Doctrine needs a service called Configuration

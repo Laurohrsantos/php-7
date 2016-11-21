@@ -38,18 +38,16 @@ class CustomerDeletePageAction
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
     {
         $id = $request->getAttribute('id');
-        $flash = $request->getAttribute('flash');
         $entity = $this->repository->find($id);
 
-        if ($request->getMethod() == 'POST'){
-
+        if ($request->getMethod() == 'DELETE') {
+            $flash = $request->getAttribute('flash');
             $this->repository->remove($entity);
             $flash->setMessage('success', 'Contato deletado com sucesso.');
             $uri = $this->router->generateUri('customer.list');
 
             return new RedirectResponse($uri);
         }
-
         return new HtmlResponse($this->template->render('app::customer/delete', [
             'customer' => $entity
         ]));

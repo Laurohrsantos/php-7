@@ -10,7 +10,7 @@ return [
                     'port' => '3306',
                     'user' => 'homestead',
                     'password' => 'secret',
-                    'dbname' => 'codemailmkt',
+                    'dbname' => 'codeemailmkt',
                     'driverOptions' => [
                         \PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES `UTF8`"
                     ]

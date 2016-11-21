@@ -14,7 +14,7 @@
                 </div>
 
                 <div class="box-body">
-                    <form name="form" role="form" method="post" action="{{ 'customer.update', {id: customer.id} }}">
+                    <form name="form" role="form" method="post" action="{{ url('customer.update', {id: customer.id}) }}">
                         <input type="hidden" class="form-control" name="_method" value="PUT">
                         <div class="box-body">
                             <div class="form-group">
