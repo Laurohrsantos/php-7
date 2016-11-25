@@ -28,7 +28,8 @@ return [
             FlashMessageInterface::class => FlashMessageFactory::class,
         ],
         'aliases' => [
-            'configuration' => 'config', //Doctrine needs a service called Configuration
+            'Configuration' => 'config', //Doctrine needs a service called Configuration
+            'Config' => 'config', //Doctrine needs a service called Configuration
         ],
     ],
 ];

@@ -2,6 +2,7 @@
 
 namespace CodeEmailMKT\Application\Action\Customer;
 
+use CodeEmailMKT\Application\Form\CustomerForm;
 use CodeEmailMKT\Domain\Entity\Customer;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -37,6 +38,8 @@ class CustomerCreatePageAction
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
     {
+        $form = new CustomerForm();
+
         $flash = $request->getAttribute('flash');
         if ($request->getMethod() == 'POST'){
             $data = $request->getParsedBody();
@@ -53,6 +56,8 @@ class CustomerCreatePageAction
             return new RedirectResponse($uri);
         }
 
-        return new HtmlResponse($this->template->render('app::customer/create'));
+        return new HtmlResponse($this->template->render('app::customer/create', [
+            'form' => $form
+        ]));
     }
 }
