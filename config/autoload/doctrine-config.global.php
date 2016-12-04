@@ -42,6 +42,7 @@ $doctrineModuleConfig['dependencies']['factories']['doctrine.cli'] = function(\I
         'doctrine.orm_cmd.run_dql',
         'doctrine.orm_cmd.validate_schema',
         'doctrine.orm_cmd.info',
+        'doctrine:fixture_cmd:load',
     );
 
     if (class_exists('Doctrine\\DBAL\\Migrations\\Version')) {

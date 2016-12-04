@@ -2,6 +2,14 @@
 
 {% block content %}
 
+    {% include '@app/customer/_form-elements.html.twig' %}
+
+    {% set submit = form.get('submit') %}
+    {% do submit.setAttribute('class', 'btn btn-primary').setLabel('Editar') %}
+
+    {% do form.setAttribute('action', url('customer.update', {id: form.getObject().id})) %}
+    {% do form.prepare() %}
+
     <div class="row">
         <div class="col-xs-12">
             <div class="box box-primary">
@@ -14,22 +22,18 @@
                 </div>
 
                 <div class="box-body">
-                    <form name="form" role="form" method="post" action="{{ url('customer.update', {id: customer.id}) }}">
-                        <input type="hidden" class="form-control" name="_method" value="PUT">
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label for="name">Nome:</label>
-                                <input type="text" class="form-control" name="name" value="{{ customer.name }}">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input type="email" class="form-control" name="email" required="required" value="{{ customer.email }}">
-                            </div>
-                            <div class="box-footer">
-                                <button class="btn btn-primary" type="submit">Editar</button>
-                            </div>
-                        </div>
-                    </form>
+
+                    {{ form().openTag(form) | raw }}
+                    {{ formHidden(form.get('_method')) }}
+
+                    {% include '@app/customer/_form.html.twig' %}
+
+                    <div class="box-footer">
+                        {{ formButton(submit) }}
+                    </div>
+
+                    {{ form().closeTag() | raw }}
+
                 </div>
             </div>
         </div>
@@ -41,5 +45,5 @@
 {% endblock %}
 
 {% block page_header %}
-    Edição de Contato - {{ customer.name }}
+    Edição de Contato - {{ form.getObject().name }}
 {% endblock %}

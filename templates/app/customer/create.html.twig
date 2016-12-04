@@ -1,17 +1,14 @@
 {% extends '@layout/default.html.twig' %}
 
 {% block content %}
-    {% set name = form.get('name') %}
-    {% do name.setAttribute('class', 'form-control') %}
 
-    {% set email = form.get('email') %}
-    {% do email.setAttribute('class', 'form-control') %}
+    {% include '@app/customer/_form-elements.html.twig' %}
 
     {% set submit = form.get('submit') %}
-    {% do
-        submit.setAttribute('class', 'btn btn-primary')
-        .setLabel('Incluir')
-    %}
+    {% do submit.setAttribute('class', 'btn btn-primary').setLabel('Incluir') %}
+
+    {% do form.setAttribute('action', url('customer.create')) %}
+    {% do form.prepare() %}
 
     <div class="row">
         <div class="col-xs-12">
@@ -27,34 +24,15 @@
                 <div class="box-body">
 
                     {{ form().openTag(form) | raw }}
-                        <div class="box-body">
-                            <div class="form-group">
-                                {{ formRow(name) }}
-                            </div>
-                            <div class="form-group">
-                                {{ formRow(email) }}
-                            </div>
-                            <div class="box-footer">
-                                {{ formButton(submit) }}
-                            </div>
-                        </div>
-                    {{ form().closeTag() | raw}}
 
-                    <form name="form" role="form" method="post" action="{{ url('customer.create') }}">
-                        <div class="box-body">
-                            <div class="form-group">
-                                <label for="name">Nome:</label>
-                                <input type="text" class="form-control" name="name">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email:</label>
-                                <input type="email" class="form-control" name="email" required="required">
-                            </div>
-                            <div class="box-footer">
-                                <button class="btn btn-primary" type="submit">Incluir</button>
-                            </div>
-                        </div>
-                    </form>
+                    {% include '@app/customer/_form.html.twig' %}
+
+                    <div class="box-footer">
+                        {{ formButton(submit) }}
+                    </div>
+
+                    {{ form().closeTag() | raw }}
+
                 </div>
             </div>
         </div>

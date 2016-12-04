@@ -24,7 +24,7 @@ class TwigMiddleware
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
     {
         $helperManager = $this->helperManager;
-        $this->twigEnv->registerUndefinedFilterCallback(function ($name) use ($helperManager) {
+        $this->twigEnv->registerUndefinedFunctionCallback(function ($name) use ($helperManager) {
             if(!$helperManager->has($name)){
                 return false;
             }

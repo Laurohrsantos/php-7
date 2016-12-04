@@ -26,6 +26,7 @@ return [
             CustomerRepositoryInterface::class => CustomerRepositoryFactory::class,
             \Aura\Session\Session::class => \DaMess\Factory\AuraSessionFactory::class,
             FlashMessageInterface::class => FlashMessageFactory::class,
+            'doctrine:fixture_cmd:load' => \CodeEdu\FixtureFactory::class,
         ],
         'aliases' => [
             'Configuration' => 'config', //Doctrine needs a service called Configuration

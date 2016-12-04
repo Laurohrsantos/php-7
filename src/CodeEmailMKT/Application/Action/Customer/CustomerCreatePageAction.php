@@ -23,41 +23,48 @@ class CustomerCreatePageAction
      * @var RouterInterface
      */
     private $router;
+    /**
+     * @var CustomerForm
+     */
+    private $form;
 
 
     public function __construct(
         CustomerRepositoryInterface $repository,
         Template\TemplateRendererInterface $template,
-        RouterInterface $router
+        RouterInterface $router,
+        CustomerForm $form
     )
     {
         $this->template = $template;
         $this->repository = $repository;
         $this->router = $router;
+        $this->form = $form;
     }
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
     {
-        $form = new CustomerForm();
-
         $flash = $request->getAttribute('flash');
+
         if ($request->getMethod() == 'POST'){
-            $data = $request->getParsedBody();
+            $dataRaw = $request->getParsedBody();
 
-            $entity = new Customer();
-            $entity->setName($data['name']);
-            $entity->setEmail($data['email']);
+            $this->form->setData($dataRaw);
 
-            $this->repository->create($entity);
-            $flash->setMessage('success', 'Contato cadastrado com sucesso.');
+            if($this->form->isValid()){
+                $entity = $this->form->getData();
 
-            $uri = $this->router->generateUri('customer.list');
+                $this->repository->create($entity);
+                $flash->setMessage('success', 'Contato cadastrado com sucesso.');
 
-            return new RedirectResponse($uri);
+                $uri = $this->router->generateUri('customer.list');
+
+                return new RedirectResponse($uri);
+            }
         }
 
         return new HtmlResponse($this->template->render('app::customer/create', [
-            'form' => $form
+            'form' => $this->form
         ]));
     }
 }

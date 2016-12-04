@@ -1,6 +1,7 @@
 <?php
 
 use CodeEmailMKT\Infrastructure;
+use CodeEmailMKT\Application\Form;
 
 
 $forms = [
@@ -9,6 +10,7 @@ $forms = [
         'invokables' => [],
         'factories' => [
             \Zend\View\HelperPluginManager::class => Infrastructure\View\HelperPluginManagerFactory::class,
+            Form\CustomerForm::class => Form\Factory\CustomerFormFactory::class,
         ]
     ],
     'view_helpers' => [

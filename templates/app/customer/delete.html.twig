@@ -2,6 +2,14 @@
 
 {% block content %}
 
+    {% include '@app/customer/_form-elements.html.twig' %}
+
+    {% set submit = form.get('submit') %}
+    {% do submit.setAttribute('class', 'btn btn-danger').setLabel('Deletar') %}
+
+    {% do form.setAttribute('action', url('customer.delete', {id: form.getObject().id})) %}
+    {% do form.prepare() %}
+
     <div class="row">
         <div class="col-xs-12">
             <div class="box box-danger">
@@ -14,28 +22,15 @@
                 </div>
 
                 <div class="box-body">
-                    <form name="form-disable" role="form">
-                        <fieldset disabled>
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <label for="name">Nome:</label>
-                                    <input type="text" class="form-control" name="name" value="{{ customer.name }}">
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email:</label>
-                                    <input type="email" class="form-control" name="email" required="required"
-                                           value="{{ customer.email }}">
-                                </div>
-                            </div>
-                        </fieldset>
-                    </form>
-                    <form name="form" role="form" method="post" action="{{ url('customer.delete', {id: customer.id}) }}">
-                        <input type="hidden" class="form-control" name="_method" value="DELETE">
-                        <div class="box-footer">
-                            <button class="btn btn-danger" type="submit"><i class="fa fa-trash"></i> Deletar
-                            </button>
-                        </div>
-                    </form>
+                    <fieldset disabled>
+                        {% include '@app/customer/_form.html.twig' %}
+                    </fieldset>
+                    {{ form().openTag(form) | raw }}
+                    {{ formHidden(form.get('_method')) }}
+                    <div class="box-footer">
+                        {{ formButton(submit) }}
+                    </div>
+                    {{ form().closeTag() | raw }}
                 </div>
             </div>
         </div>
@@ -47,5 +42,5 @@
 {% endblock %}
 
 {% block page_header %}
-    Edição de Contato - {{ customer.name }}
+    Edição de Contato - {{ form.getObject().name }}
 {% endblock %}
