@@ -1,4 +1,5 @@
 <?php
+use CodeEmailMKT\Infrastructure\Service;
 use Zend\Expressive\Application;
 use Zend\Expressive\Container\ApplicationFactory;
 use Zend\Expressive\Helper;
@@ -24,13 +25,14 @@ return [
             Application::class => ApplicationFactory::class,
             Helper\UrlHelper::class => Helper\UrlHelperFactory::class,
             CustomerRepositoryInterface::class => CustomerRepositoryFactory::class,
-            \Aura\Session\Session::class => \DaMess\Factory\AuraSessionFactory::class,
             FlashMessageInterface::class => FlashMessageFactory::class,
             'doctrine:fixture_cmd:load' => \CodeEdu\FixtureFactory::class,
+            \CodeEmailMKT\Domain\Service\AuthInterface::class => Service\AuthServiceFactory::class,
         ],
         'aliases' => [
             'Configuration' => 'config', //Doctrine needs a service called Configuration
             'Config' => 'config', //Doctrine needs a service called Configuration
+            \Zend\Authentication\AuthenticationService::class => 'doctrine.authenticationservice.orm_default',
         ],
     ],
 ];

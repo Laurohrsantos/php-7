@@ -34,7 +34,7 @@ class Customer
     /**
      * @param mixed $name
      */
-    public function setName($name)
+    public function setName(String $name)
     {
         $this->name = $name;
     }
@@ -50,7 +50,7 @@ class Customer
     /**
      * @param mixed $email
      */
-    public function setEmail($email)
+    public function setEmail(String $email)
     {
         $this->email = $email;
     }

@@ -2,50 +2,49 @@
 
 namespace CodeEmailMKT\Infrastructure\Service;
 
-use Aura\Session\Segment;
-use Aura\Session\Session;
 use CodeEmailMKT\Domain\Service\FlashMessageInterface;
+use Zend\Mvc\Controller\Plugin\FlashMessenger;
 
 class FlashMessage implements FlashMessageInterface
 {
 
     /**
-     * @var Session
+     * @var FlashMessenger
      */
-    private $session;
-    /**
-     * @var Segment
-     */
-    private $segment;
+    private $flashMessenger;
 
-    public function __construct(Session $session)
+    public function __construct(FlashMessenger $flashMessenger)
     {
-        $this->session = $session;
-        if (!$this->session->isStarted()) {
-            $this->session->start();
-        }
+        $this->flashMessenger = $flashMessenger;
     }
 
-    public function setNamespace($name = __NAMESPACE__)
+    public function setNamespace(string $name = __NAMESPACE__) : FlashMessage
     {
-        $this->segment = $this->session->getSegment($name);
+        $this->flashMessenger->setNamespace($name);
         return $this;
     }
 
-    public function setMessage($key, $value)
+    public function setMessage($key, String $value) : FlashMessage
     {
-        if (!$this->segment) {
-            $this->setNamespace();
+        switch ($key){
+            case self::MESSAGE_SUCCESS:
+                $this->flashMessenger->addSuccessMessage($value);
+                break;
         }
-        $this->segment->setFlash($key, $value);
+
         return $this;
     }
 
     public function getMessage($key)
     {
-        if (!$this->segment) {
-            $this->setNamespace();
+        $result = null;
+
+        switch ($key){
+            case self::MESSAGE_SUCCESS:
+                $result = $this->flashMessenger->getCurrentSuccessMessages();
+                break;
         }
-        return $this->segment->getFlash($key);
+
+        return count($result) ? $result[0] : null;
     }
 }

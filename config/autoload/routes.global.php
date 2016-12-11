@@ -1,6 +1,10 @@
 <?php
 
-use CodeEmailMKT\Application\Action\Customer;
+use CodeEmailMKT\Application\Action\Customer\{
+    CustomerListPageAction, CustomerCreatePageAction, CustomerUpdatePageAction, CustomerDeletePageAction
+};
+use CodeEmailMKT\Application\Action\Customer\Factory as Customer;
+use CodeEmailMKT\Application\Action;
 
 return [
     'dependencies' => [
@@ -9,12 +13,14 @@ return [
             CodeEmailMKT\Application\Action\PingAction::class => CodeEmailMKT\Application\Action\PingAction::class,
         ],
         'factories' => [
-            CodeEmailMKT\Application\Action\HomePageAction::class => CodeEmailMKT\Application\Action\HomePageFactory::class,
-            CodeEmailMKT\Application\Action\TestePageAction::class => CodeEmailMKT\Application\Action\TestePageFactory::class,
-            Customer\CustomerListPageAction::class => Customer\Factory\CustomerListPageFactory::class,
-            Customer\CustomerCreatePageAction::class => Customer\Factory\CustomerCreatePageFactory::class,
-            Customer\CustomerUpdatePageAction::class => Customer\Factory\CustomerUpdatePageFactory::class,
-            Customer\CustomerDeletePageAction::class => Customer\Factory\CustomerDeletePageFactory::class,
+            Action\HomePageAction::class => Action\HomePageFactory::class,
+            Action\TestePageAction::class => Action\TestePageFactory::class,
+            Action\LoginPageAction::class => Action\LoginPageFactory::class,
+            Action\LogoutAction::class => Action\LogoutFactory::class,
+            CustomerListPageAction::class => Customer\CustomerListPageFactory::class,
+            CustomerCreatePageAction::class => Customer\CustomerCreatePageFactory::class,
+            CustomerUpdatePageAction::class => Customer\CustomerUpdatePageFactory::class,
+            CustomerDeletePageAction::class => Customer\CustomerDeletePageFactory::class,
         ],
     ],
 
@@ -38,21 +44,33 @@ return [
             'allowed_methods' => ['GET'],
         ],
         [
+            'name' => 'auth.login',
+            'path' => '/auth/login',
+            'middleware' => CodeEmailMKT\Application\Action\LoginPageAction::class,
+            'allowed_methods' => ['GET', 'POST'],
+        ],
+        [
+            'name' => 'auth.logout',
+            'path' => '/auth/logout',
+            'middleware' => CodeEmailMKT\Application\Action\LogoutAction::class,
+            'allowed_methods' => ['GET'],
+        ],
+        [
             'name' => 'customer.list',
             'path' => '/admin/customers',
-            'middleware' => Customer\CustomerListPageAction::class,
+            'middleware' => CustomerListPageAction::class,
             'allowed_methods' => ['GET'],
         ],
         [
             'name' => 'customer.create',
             'path' => '/admin/customers/create',
-            'middleware' => Customer\CustomerCreatePageAction::class,
+            'middleware' => CustomerCreatePageAction::class,
             'allowed_methods' => ['GET', 'POST'],
         ],
         [
             'name' => 'customer.update',
             'path' => '/admin/customers/update/{id}',
-            'middleware' => Customer\CustomerUpdatePageAction::class,
+            'middleware' => CustomerUpdatePageAction::class,
             'allowed_methods' => ['GET', 'PUT'],
             'options' => [
                 'tokens' => [
@@ -63,7 +81,7 @@ return [
         [
             'name' => 'customer.delete',
             'path' => '/admin/customers/{id}/delete',
-            'middleware' => Customer\CustomerDeletePageAction::class,
+            'middleware' => CustomerDeletePageAction::class,
             'allowed_methods' => ['GET', 'DELETE'],
             'options' => [
                 'tokens' => [

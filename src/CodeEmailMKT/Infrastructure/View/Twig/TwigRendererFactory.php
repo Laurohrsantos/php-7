@@ -1,11 +1,4 @@
 <?php
-/**
- * Zend Framework (http://framework.zend.com/)
- *
- * @see       https://github.com/zendframework/zend-expressive for the canonical source repository
- * @copyright Copyright (c) 2015 Zend Technologies USA Inc. (http://www.zend.com)
- * @license   https://github.com/zendframework/zend-expressive/blob/master/LICENSE.md New BSD License
- */
 
 namespace CodeEmailMKT\Infrastructure\View\Twig;
 
@@ -20,41 +13,6 @@ use Zend\Expressive\Helper\UrlHelper;
 use Zend\Expressive\Twig\Exception;
 use Zend\Expressive\Twig\TwigExtension;
 
-/**
- * Create and return a Twig template instance.
- *
- * Optionally uses the service 'config', which should return an array. This
- * factory consumes the following structure:
- *
- * <code>
- * 'debug' => boolean,
- * 'templates' => [
- *     'extension' => 'file extension used by templates; defaults to html.twig',
- *     'paths' => [
- *         // namespace / path pairs
- *         //
- *         // Numeric namespaces imply the default/main namespace. Paths may be
- *         // strings or arrays of string paths to associate with the namespace.
- *     ],
- * ],
- * 'twig' => [
- *     'cache_dir' => 'path to cached templates',
- *     'assets_url' => 'base URL for assets',
- *     'assets_version' => 'base version for assets',
- *     'extensions' => [
- *         // extension service names or instances
- *     ],
- *     'globals' => [
- *         // Global variables passed to twig templates
- *         'ga_tracking' => 'UA-XXXXX-X'
- *     ],
- * ],
- * </code>
- *
- * Note: the various keys in the `twig` configuration key can occur in either
- * that location, or under `templates` (which was the behavior prior to 0.3.0);
- * the two arrays are merged by the factory.
- */
 class TwigRendererFactory
 {
     /**
@@ -62,7 +20,7 @@ class TwigRendererFactory
      * @return TwigRenderer
      * @throws Exception\InvalidConfigException for invalid config service values.
      */
-    public function __invoke(ContainerInterface $container)
+    public function __invoke(ContainerInterface $container) : TwigRenderer
     {
         $config   = $container->has('config') ? $container->get('config') : [];
 
@@ -167,7 +125,7 @@ class TwigRendererFactory
      * @throws Exception\InvalidConfigException if a non-array, non-ArrayObject
      *     $config is received.
      */
-    private function mergeConfig($config)
+    private function mergeConfig($config) : array
     {
         $config = $config instanceof ArrayObject ? $config->getArrayCopy() : $config;
 

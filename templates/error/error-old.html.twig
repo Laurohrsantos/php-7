@@ -1,4 +1,4 @@
-{% extends identity() is not null ?'@layout/default.html.twig':'@layout/auth.html.twig' %}
+{% extends '@layout/default.html.twig' %}
 
 {% block title %}{{ status }} {{ reason }}{% endblock %}
 

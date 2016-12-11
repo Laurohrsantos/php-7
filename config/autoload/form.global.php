@@ -1,25 +1,34 @@
 <?php
 
-use CodeEmailMKT\Infrastructure;
-use CodeEmailMKT\Application\Form;
+use CodeEmailMKT\Application\Form\{
+    CustomerForm, Factory\CustomerFormFactory, Factory\LoginFormFactory, LoginForm
+};
 
+use CodeEmailMKT\Infrastructure\View\HelperPluginManagerFactory;
+use Zend\Form\ConfigProvider;
+use Zend\Stdlib\ArrayUtils;
+use Zend\View\Helper\Service\IdentityFactory;
+use Zend\View\HelperPluginManager;
 
 $forms = [
     'dependencies' => [
         'alias' => [],
         'invokables' => [],
         'factories' => [
-            \Zend\View\HelperPluginManager::class => Infrastructure\View\HelperPluginManagerFactory::class,
-            Form\CustomerForm::class => Form\Factory\CustomerFormFactory::class,
+            HelperPluginManager::class => HelperPluginManagerFactory::class,
+            CustomerForm::class => CustomerFormFactory::class,
+            LoginForm::class => LoginFormFactory::class,
         ]
     ],
     'view_helpers' => [
-        'aliases' => [],
+        'alias' => [],
         'invokables' => [],
-        'factories' => []
+        'factories' => [
+            'identity' => IdentityFactory::class
+        ]
     ]
 ];
 
-$configProviderForm = (new \Zend\Form\ConfigProvider())->__invoke();
+$configProviderForm = (new ConfigProvider())->__invoke();
 
-return \Zend\Stdlib\ArrayUtils::merge($configProviderForm, $forms);
+return ArrayUtils::merge($configProviderForm, $forms);

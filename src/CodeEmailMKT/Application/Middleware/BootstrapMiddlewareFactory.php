@@ -2,7 +2,6 @@
 
 namespace CodeEmailMKT\Application\Middleware;
 
-use CodeEmailMKT\Application\Middleware\BootstrapMiddleware;
 use CodeEmailMKT\Domain\Service\FlashMessageInterface;
 use CodeEmailMKT\Infrastructure\Bootstrap;
 use Interop\Container\ContainerInterface;
@@ -10,7 +9,7 @@ use Interop\Container\ContainerInterface;
 
 class BootstrapMiddlewareFactory
 {
-    public function __invoke(ContainerInterface $container)
+    public function __invoke(ContainerInterface $container) : BootstrapMiddleware
     {
         $bootstrap = new Bootstrap();
         $flash = $container->get(FlashMessageInterface::class);
