@@ -9,7 +9,7 @@ use Interop\Container\ContainerInterface;
 
 class BootstrapMiddlewareFactory
 {
-    public function __invoke(ContainerInterface $container) : BootstrapMiddleware
+    public function __invoke(ContainerInterface $container): BootstrapMiddleware
     {
         $bootstrap = new Bootstrap();
         $flash = $container->get(FlashMessageInterface::class);

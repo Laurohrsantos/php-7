@@ -1,7 +1,11 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace CodeEmailMKT\Infrastructure\Service;
 
+use Aura\Session\Segment;
+use Aura\Session\Session;
 use CodeEmailMKT\Domain\Service\FlashMessageInterface;
 use Zend\Mvc\Controller\Plugin\FlashMessenger;
 
@@ -18,15 +22,15 @@ class FlashMessage implements FlashMessageInterface
         $this->flashMessenger = $flashMessenger;
     }
 
-    public function setNamespace(string $name = __NAMESPACE__) : FlashMessage
+    public function setNamespace(string $name = __NAMESPACE__): FlashMessage
     {
         $this->flashMessenger->setNamespace($name);
         return $this;
     }
 
-    public function setMessage($key, String $value) : FlashMessage
+    public function setMessage($key, string $value) : FlashMessage
     {
-        switch ($key){
+        switch ($key) {
             case self::MESSAGE_SUCCESS:
                 $this->flashMessenger->addSuccessMessage($value);
                 break;
@@ -37,14 +41,14 @@ class FlashMessage implements FlashMessageInterface
 
     public function getMessage($key)
     {
-        $result = null;
+        $result = [];
 
-        switch ($key){
+        switch ($key) {
             case self::MESSAGE_SUCCESS:
                 $result = $this->flashMessenger->getCurrentSuccessMessages();
                 break;
         }
 
-        return count($result) ? $result[0] : null;
+        return count($result) ?? null;
     }
 }

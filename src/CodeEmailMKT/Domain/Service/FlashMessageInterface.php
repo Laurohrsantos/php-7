@@ -8,9 +8,9 @@ interface FlashMessageInterface
 {
     const MESSAGE_SUCCESS = 0;
 
-    public function setNamespace(String $name);
+    public function setNamespace(string $name);
 
-    public function setMessage($key, String $value);
+    public function setMessage($key, string $value);
 
     public function getMessage($key);
 }

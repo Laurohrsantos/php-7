@@ -22,7 +22,7 @@ class AuthService implements AuthInterface
         $this->authenticationService = $authenticationService;
     }
 
-    public function authenticate(String $email, String $password) : bool
+    public function authenticate(string $email, string $password) : bool
     {
         /** @var ValidatableAdapterInterface $adapter */
         $adapter = $this->authenticationService->getAdapter();
