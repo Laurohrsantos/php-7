@@ -11,7 +11,7 @@ use CodeEmailMKT\Domain\Persistence\CustomerRepositoryInterface;
 
 class CustomerDeletePageFactory
 {
-    public function __invoke(ContainerInterface $container)
+    public function __invoke(ContainerInterface $container) : CustomerDeletePageAction
     {
         $template = $container->get(TemplateRendererInterface::class);
         $repository = $container->get(CustomerRepositoryInterface::class);

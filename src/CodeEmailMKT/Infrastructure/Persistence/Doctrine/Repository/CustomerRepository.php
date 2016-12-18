@@ -10,7 +10,7 @@ use Doctrine\ORM\UnitOfWork;
 class CustomerRepository extends EntityRepository implements CustomerRepositoryInterface
 {
 
-    public function create($entity)
+    public function create($entity) : Customer
     {
         $this->getEntityManager()->persist($entity);
         $this->getEntityManager()->flush();
@@ -18,7 +18,7 @@ class CustomerRepository extends EntityRepository implements CustomerRepositoryI
         return $entity;
     }
 
-    public function update($entity)
+    public function update($entity) : Customer
     {
         if ($this->getEntityManager()->getUnitOfWork()->getEntityState($entity) != UnitOfWork::STATE_MANAGED) {
             $this->getEntityManager()->merge($entity);

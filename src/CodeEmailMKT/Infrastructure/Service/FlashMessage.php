@@ -22,13 +22,13 @@ class FlashMessage implements FlashMessageInterface
         $this->flashMessenger = $flashMessenger;
     }
 
-    public function setNamespace($name = __NAMESPACE__)
+    public function setNamespace(string $name = __NAMESPACE__)
     {
         $this->flashMessenger->setNamespace($name);
         return $this;
     }
 
-    public function setMessage($key, $value)
+    public function setMessage($key, string $value)
     {
         switch ($key) {
             case self::MESSAGE_SUCCESS:

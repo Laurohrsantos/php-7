@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace CodeEmailMKT\Domain\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -34,7 +36,7 @@ class Customer
     /**
      * @param mixed $name
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
     }
@@ -50,7 +52,7 @@ class Customer
     /**
      * @param mixed $email
      */
-    public function setEmail($email)
+    public function setEmail(string $email)
     {
         $this->email = $email;
     }

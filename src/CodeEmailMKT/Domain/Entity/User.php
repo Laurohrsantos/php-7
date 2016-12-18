@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types = 1);
+
 namespace CodeEmailMKT\Domain\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -37,7 +39,7 @@ class User
      * @param mixed $name
      * @return $this
      */
-    public function setName($name)
+    public function setName(string $name)
     {
         $this->name = $name;
 
@@ -56,7 +58,7 @@ class User
      * @param mixed $email
      * @return User
      */
-    public function setEmail($email)
+    public function setEmail(string $email)
     {
         $this->email = $email;
 
@@ -75,7 +77,7 @@ class User
      * @param mixed $password
      * @return $this
      */
-    public function setPassword($password)
+    public function setPassword(string $password)
     {
         $this->password = $password;
 
@@ -94,7 +96,7 @@ class User
      * @param mixed $plainPassword
      * @return User
      */
-    public function setPlainPassword($plainPassword)
+    public function setPlainPassword(string $plainPassword)
     {
         $this->plainPassword = $plainPassword;
 

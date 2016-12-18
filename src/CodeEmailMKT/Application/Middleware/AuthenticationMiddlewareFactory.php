@@ -8,7 +8,7 @@ use Zend\Expressive\Router\RouterInterface;
 
 class AuthenticationMiddlewareFactory
 {
-    public function __invoke(ContainerInterface $container): AuthenticationMiddleware
+    public function __invoke(ContainerInterface $container) : AuthenticationMiddleware
     {
         $router = $container->get(RouterInterface::class);
         $authService = $container->get(AuthInterface::class);
