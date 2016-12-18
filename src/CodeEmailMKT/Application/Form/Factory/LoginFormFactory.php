@@ -9,7 +9,7 @@ use Zend\Hydrator\ClassMethods;
 
 class LoginFormFactory
 {
-    public function __invoke(ContainerInterface $container): LoginForm
+    public function __invoke(ContainerInterface $container)
     {
         $form = new LoginForm();
 

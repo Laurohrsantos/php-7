@@ -1,8 +1,9 @@
 <?php
 
-use CodeEmailMKT\Application\Action\Customer\{
-    CustomerListPageAction, CustomerCreatePageAction, CustomerUpdatePageAction, CustomerDeletePageAction
-};
+use CodeEmailMKT\Application\Action\Customer\CustomerListPageAction;
+use CodeEmailMKT\Application\Action\Customer\CustomerCreatePageAction;
+use CodeEmailMKT\Application\Action\Customer\CustomerUpdatePageAction;
+use CodeEmailMKT\Application\Action\Customer\CustomerDeletePageAction;
 use CodeEmailMKT\Application\Action\Customer\Factory as Customer;
 use CodeEmailMKT\Application\Action;
 

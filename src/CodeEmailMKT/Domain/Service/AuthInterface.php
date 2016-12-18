@@ -8,11 +8,11 @@ use CodeEmailMKT\Domain\Entity\User;
 
 interface AuthInterface
 {
-    public function authenticate(string $email, string $password) : bool;
+    public function authenticate($email, $password);
 
-    public function isAuth() : bool;
+    public function isAuth();
 
-    public function getUser() : User;
+    public function getUser();
 
     public function destroy();
 }

@@ -22,7 +22,7 @@ class AuthService implements AuthInterface
         $this->authenticationService = $authenticationService;
     }
 
-    public function authenticate(string $email, string $password) : bool
+    public function authenticate($email, $password)
     {
         /** @var ValidatableAdapterInterface $adapter */
         $adapter = $this->authenticationService->getAdapter();
@@ -34,12 +34,12 @@ class AuthService implements AuthInterface
         return $result->isValid();
     }
 
-    public function isAuth() : bool
+    public function isAuth()
     {
         return $this->getUser() != null;
     }
 
-    public function getUser() : User
+    public function getUser()
     {
         return $this->authenticationService->getIdentity();
     }

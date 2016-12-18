@@ -9,7 +9,7 @@ use Zend\Mvc\Controller\Plugin\FlashMessenger;
 class FlashMessageFactory
 {
 
-    public function __invoke(ContainerInterface $container) : FlashMessage
+    public function __invoke(ContainerInterface $container)
     {
         $flashMessenger = new FlashMessenger();
         return new FlashMessage($flashMessenger);

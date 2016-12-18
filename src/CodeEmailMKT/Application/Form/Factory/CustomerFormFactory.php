@@ -9,7 +9,7 @@ use Zend\Hydrator\ClassMethods;
 
 class CustomerFormFactory
 {
-    public function __invoke(): CustomerForm
+    public function __invoke()
     {
         $form = new CustomerForm();
 

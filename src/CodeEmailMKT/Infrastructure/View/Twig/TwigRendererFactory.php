@@ -20,7 +20,7 @@ class TwigRendererFactory
      * @return TwigRenderer
      * @throws Exception\InvalidConfigException for invalid config service values.
      */
-    public function __invoke(ContainerInterface $container): TwigRenderer
+    public function __invoke(ContainerInterface $container)
     {
         $config   = $container->has('config') ? $container->get('config') : [];
 
@@ -125,7 +125,7 @@ class TwigRendererFactory
      * @throws Exception\InvalidConfigException if a non-array, non-ArrayObject
      *     $config is received.
      */
-    private function mergeConfig($config): array
+    private function mergeConfig($config)
     {
         $config = $config instanceof ArrayObject ? $config->getArrayCopy() : $config;
 

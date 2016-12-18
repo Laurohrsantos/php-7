@@ -11,7 +11,7 @@ use CodeEmailMKT\Domain\Persistence\CustomerRepositoryInterface;
 
 class CustomerUpdatePageFactory
 {
-    public function __invoke(ContainerInterface $container) : CustomerUpdatePageAction
+    public function __invoke(ContainerInterface $container)
     {
         $template = $container->get(TemplateRendererInterface::class);
         $repository = $container->get(CustomerRepositoryInterface::class);

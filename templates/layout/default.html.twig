@@ -27,7 +27,7 @@
     <header class="main-header">
 
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="{{ url('home') }}" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>MKT</b></span>
             <!-- logo for regular state and mobile devices -->
@@ -130,15 +130,18 @@
             </h1>
         </section>
 
-        <!-- Main content -->
-        <section class="content container">
+        <!-- Main contente -->
+        <section class="content">
+
             {% if message is defined and message is not null %}
                 <div class="alert alert-{{ messageType is defined ? messageType : 'success' }} alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
                     <h5><i class="icon fa fa-check"></i> {{ message }}</h5>
                 </div>
             {% endif %}
+
             {% block content %}{% endblock %}
+
         </section>
         <!-- /.content -->
     </div>
