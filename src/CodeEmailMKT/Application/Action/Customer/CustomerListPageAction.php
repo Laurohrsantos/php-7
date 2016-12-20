@@ -2,7 +2,6 @@
 
 namespace CodeEmailMKT\Application\Action\Customer;
 
-
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use Zend\Diactoros\Response\HtmlResponse;

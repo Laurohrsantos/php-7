@@ -49,6 +49,6 @@ class FlashMessage implements FlashMessageInterface
                 break;
         }
 
-        return count($result) ?? null;
+        return count($result) ? $result[0] : null;
     }
 }
