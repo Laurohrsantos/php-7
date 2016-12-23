@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types = 1);
+//declare(strict_types = 1);
 
 namespace CodeEmailMKT\Domain\Entity;
 
@@ -19,12 +19,15 @@ class Tag
 
     private $customers;
 
+    private $campaigns;
+
     /**
      * Tag constructor.
      */
     public function __construct()
     {
         $this->customers = new ArrayCollection();
+        $this->campaigns = new ArrayCollection();
     }
 
     /**
@@ -59,12 +62,14 @@ class Tag
         $this->name = $name;
     }
 
-    /**
-     * @return Collection
-     */
     public function getCustomers() : Collection
     {
         return $this->customers;
+    }
+
+    public function getCampaigns(): Collection
+    {
+        return $this->campaigns;
     }
 
 }

@@ -54,7 +54,7 @@ class TagDeletePageAction
 
         if ($request->getMethod() == 'DELETE') {
             $flash = $request->getAttribute('flash');
-            $flash->setMessage(FlashMessageInterface::MESSAGE_SUCCESS, "Tag \"{$entity->getName()}\" removido com sucesso!");
+            $flash->setMessage(FlashMessageInterface::MESSAGE_SUCCESS, "Tag \"{$entity->getName()}\" removida.");
 
             $this->repository->remove($entity);
 

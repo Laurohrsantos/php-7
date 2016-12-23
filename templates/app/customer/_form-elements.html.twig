@@ -3,3 +3,6 @@
 
 {% set email = form.get('email') %}
 {% do email.setAttribute('class', 'form-control') %}
+
+{% set tags = form.get('tags') %}
+{% do tags.setAttribute('class', 'form-control') %}

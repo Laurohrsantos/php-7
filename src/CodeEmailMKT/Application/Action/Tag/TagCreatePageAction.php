@@ -55,7 +55,7 @@ class TagCreatePageAction
                 $entity = $this->form->getData();
                 $this->repository->create($entity);
 
-                $flash->setMessage(FlashMessageInterface::MESSAGE_SUCCESS, "Tag cadastrada com sucesso!");
+                $flash->setMessage(FlashMessageInterface::MESSAGE_SUCCESS, "Tag cadastrada!");
 
                 $uri = $this->router->generateUri('tag.list');
 

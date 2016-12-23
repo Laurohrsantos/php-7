@@ -61,7 +61,7 @@ class TagUpdatePageAction
                 $this->repository->update($entity);
 
                 $flash = $request->getAttribute('flash');
-                $flash->setMessage(FlashMessageInterface::MESSAGE_SUCCESS, "Tag atualizada com sucesso!");
+                $flash->setMessage(FlashMessageInterface::MESSAGE_SUCCESS, "Tag atualizada.");
 
                 $uri = $this->router->generateUri('tag.list');
 

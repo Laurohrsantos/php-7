@@ -1,7 +1,7 @@
 #CodeEmailMKT.Domain.Entity.Tag.dcm.yml
 CodeEmailMKT\Domain\Entity\Tag:
   type: entity
-  repositoryClass: \CodeEmailMKT\Infrastructure\Persistence\Doctrine\Repository\TagRepository
+  repositoryClass: CodeEmailMKT\Infrastructure\Persistence\Doctrine\Repository\TagRepository
   table: tags
   id:
     id:
@@ -16,4 +16,6 @@ CodeEmailMKT\Domain\Entity\Tag:
     customers:
       targetEntity: CodeEmailMKT\Domain\Entity\Customer
       inversedBy: tags
-
+    campaigns:
+      targetEntity: CodeEmailMKT\Domain\Entity\Campaign
+      inversedBy: tags

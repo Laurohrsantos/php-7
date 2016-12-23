@@ -6,32 +6,27 @@ namespace CodeEmailMKT\Domain\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
 
-/**
- * @ORM\Entity
- * @ORM\Table(name="enderecos")
- */
-class Customer
+class Campaign
 {
-
     private $id;
+
     private $name;
-    private $email;
+
+    private $template;
+
     private $tags;
 
     /**
      * Customer constructor.
-     * @param $tags
      */
     public function __construct()
     {
         $this->tags = new ArrayCollection();
     }
 
-
     /**
-     * @return int|null
+     * @return mixed
      */
     public function getId()
     {
@@ -47,7 +42,7 @@ class Customer
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
      */
     public function setName(string $name)
     {
@@ -57,20 +52,20 @@ class Customer
     /**
      * @return mixed
      */
-    public function getEmail()
+    public function getTemplate()
     {
-        return $this->email;
+        return $this->template;
     }
 
     /**
-     * @param mixed $email
+     * @param string $template
      */
-    public function setEmail(string $email)
+    public function setTemplate(string $template)
     {
-        $this->email = $email;
+        $this->template = $template;
     }
 
-    public function getTags(): Collection
+    public function getTags() : Collection
     {
         return $this->tags;
     }
@@ -79,8 +74,8 @@ class Customer
     {
         /** @var Tag $tag */
         foreach ($tags as $tag) {
-            $tag->getCustomers()->add($this); //adicionando o customer na tag
-            $this->tags->add($tag); //adicionando a tag no customer
+            $tag->getCampaigns()->add($this);
+            $this->tags->add($tag);
         }
 
         return $this;
@@ -90,11 +85,10 @@ class Customer
     {
         /** @var Tag $tag */
         foreach ($tags as $tag) {
-            $tag->getCustomers()->removeElement($this); //removendo o customer na tag
-            $this->tags->removeElement($tag); //removendo a tag no customer
+            $tag->getCampaigns()->removeElement($this);
+            $this->tags->removeElement($tag);
         }
 
-        return$this;
+        return $this;
     }
-
 }
