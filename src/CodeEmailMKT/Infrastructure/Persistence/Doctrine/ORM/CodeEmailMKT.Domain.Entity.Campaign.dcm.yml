@@ -12,6 +12,9 @@ CodeEmailMKT\Domain\Entity\Campaign:
     name:
       type: string
       length: 200
+    subject:
+        type: string
+        length: 200
     template:
       type: text
   manyToMany:

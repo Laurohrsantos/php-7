@@ -1,7 +1,7 @@
 <?php
 
 use CodeEmailMKT\Application\Form\{
-    CustomerForm, Factory\CustomerFormFactory, Factory\LoginFormFactory, LoginForm, TagForm, Factory\TagFormFactory
+    CampaignForm, CustomerForm, Factory\CampaignFormFactory, Factory\CustomerFormFactory, Factory\LoginFormFactory, LoginForm, TagForm, Factory\TagFormFactory
 };
 use CodeEmailMKT\Infrastructure\View\HelperPluginManagerFactory;
 use Zend\Form\ConfigProvider;
@@ -17,6 +17,7 @@ $forms = [
             CustomerForm::class => CustomerFormFactory::class,
             LoginForm::class => LoginFormFactory::class,
             TagForm::class => TagFormFactory::class,
+            CampaignForm::class => CampaignFormFactory::class,
         ]
     ],
     'view_helpers' => [

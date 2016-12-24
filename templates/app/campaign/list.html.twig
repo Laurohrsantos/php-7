@@ -1,0 +1,66 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <div class="col-xs-6 col-xs-offset-6 col-sm-4 col-sm-offset-8 col-md-3 col-md-offset-9 col-lg-2 col-lg-offset-10">
+                        <a href="{{ url('campaign.create') }}" class="btn btn-block btn-info">
+                            <i class="fa fa-plus-circle"></i>
+                            Cadastrar novo
+                        </a>
+                    </div>
+                </div>
+
+                <div class="box-body">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th width="10px">#</th>
+                            <th>Nome</th>
+                            <th>Assunto</th>
+                            <th>Ações</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        {% for campaign in campaigns %}
+                            <tr>
+                                <td width="30px">{{ campaign.id }}</td>
+                                <td width="20%">{{ campaign.name }}</td>
+                                <td>{{ campaign.subject | slice(0, 30) }}...</td>
+                                <td width="250px">
+                                    <a href="{{ url('home', {id: campaign.id}) }}" class="btn btn-success" title="Enviar campanha">
+                                        <i class="fa fa-send"></i>
+                                    </a>&nbsp;
+
+                                    <a href="{{ url('home', {id: campaign.id}) }}" class="btn btn-warning" title="Relatório da campanha">
+                                        <i class="fa fa-signal"></i>
+                                    </a>
+
+                                    <a href="{{ url('campaign.update', {id: campaign.id}) }}" class="btn btn-info" title="Editar">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>&nbsp;
+
+                                    <a href="{{ url('campaign.delete', {id: campaign.id}) }}" class="btn btn-danger" title="Remover">
+                                        <i class="fa fa-times"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{%  block title %}
+    Listagem de Campanhas - {{ parent() }}
+{% endblock %}
+
+{%  block page_header %}
+    Listagem de Campanhas
+{% endblock %}

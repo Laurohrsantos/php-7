@@ -1,0 +1,45 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block content %}
+
+    {% include '@app/campaign/_form-elements.html.twig' %}
+
+    {% do form.get('name').setAttribute('disabled', 'disabled') %}
+    {% do form.get('template').setAttribute('disabled', 'disabled') %}
+    {% do form.get('tags').setAttribute('disabled', 'disabled') %}
+    {% do form.get('submit').setAttribute('class', 'btn btn-danger').setLabel('Deletar') %}
+
+    {% do form.setAttribute('action', url('campaign.delete', {id: form.getObject().id})) %}
+    {% do form.prepare() %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-danger">
+                <div class="box-header with-border">
+                    <div class="col-xs-6 col-xs-offset-6 col-sm-4 col-sm-offset-8 col-md-3 col-md-offset-9 col-lg-2 col-lg-offset-10">
+                        <a href="{{ url('campaign.list') }}" class="btn btn-block btn-primary">
+                            <i class="fa fa-reply"></i> Voltar
+                        </a>
+                    </div>
+                </div>
+
+                <div class="box-body">
+                    {{ form().openTag(form) | raw }}
+                    {{ formHidden(form.get('_method')) }}
+
+                    {% include '@app/campaign/_form.html.twig' %}
+
+                    {{ form().closeTag() | raw }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{%  block title %}
+    Remover Campanha - {{ parent() }}
+{% endblock %}
+
+{%  block page_header %}
+    Remover Campanha - {{ form.getObject().name }}
+{% endblock %}

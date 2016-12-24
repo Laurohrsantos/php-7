@@ -1,0 +1,57 @@
+{% extends '@layout/default.html.twig' %}
+
+{% block content %}
+
+    {% include '@app/campaign/_form-elements.html.twig' %}
+
+    {% do form.get('name').setAttribute('disabled', 'disabled') %}
+    {% do form.get('template').setAttribute('disabled', 'disabled') %}
+    {% do form.get('tags').setAttribute('disabled', 'disabled') %}
+    {% do form.get('subject').setAttribute('disabled', 'disabled') %}
+    {% do form.get('submit').setAttribute('class', 'btn btn-success').setLabel('Enviar') %}
+
+    {% do form.setAttribute('action', url('campaign.sender', {id: form.getObject().id})) %}
+    {% do form.prepare() %}
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <div class="col-xs-6 col-xs-offset-6 col-sm-4 col-sm-offset-8 col-md-3 col-md-offset-9 col-lg-2 col-lg-offset-10">
+                        <a href="{{ url('campaign.list') }}" class="btn btn-block btn-primary">
+                            <i class="fa fa-reply"></i> Voltar
+                        </a>
+                    </div>
+                </div>
+
+                <div class="box-body">
+                    {{ form().openTag(form) | raw }}
+
+                    {% include '@app/campaign/_form.html.twig' %}
+
+                    {{ form().closeTag() | raw }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{%  block title %}
+    Envio de Campanha - {{ parent() }}
+{% endblock %}
+
+{%  block page_header %}
+    Envio de Campanha - {{ form.getObject().name }}
+{% endblock %}
+
+{%  block javascript %}
+    <script>
+        $(function () {
+            tinymce.init({
+                selector: 'textarea',
+                readonly: 1,
+                height: 300
+            });
+        });
+    </script>
+{% endblock %}

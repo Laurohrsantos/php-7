@@ -20,7 +20,7 @@ class TagFixture extends AbstractFixture implements FixtureInterface, OrderedFix
     {
         $faker = Faker::create();
 
-        foreach (range(1, 100) as $key => $value) {
+        foreach (range(1, 20) as $key => $value) {
             $tag = new Tag();
             $tag->setName($faker->city);
             $this->addCustomers($tag);
@@ -34,41 +34,25 @@ class TagFixture extends AbstractFixture implements FixtureInterface, OrderedFix
 
     public function addCustomers(Tag $tag)
     {
-        $numCustomers = rand(1, 5);
-        foreach (range(1, $numCustomers) as $value) {
+        $indexCustomers = array_rand(range(0, 4), rand(2, 5));
 
-            $index = rand(0, 99);
-            $customer = $this->getReference("customer-$index");
-
-            if ($tag->getCustomers()->exists(function ($key, $item) use ($customer) {
-                return $customer->getId() == $item->getId();
-            })
-            ) {
-                $index = rand(0, 99);
-                $customer = $this->getReference("customer-$index");
-            }
-
+        foreach ($indexCustomers as $value) {
+            $customer = $this->getReference("customer-{$value}");
             $tag->getCustomers()->add($customer);
         }
     }
 
     public function addCampaigns(Tag $tag)
     {
-        $numCampaigns = rand(1, 5);
-        foreach (range(1, $numCampaigns) as $value) {
+        $indexCampaigns = array_rand(range(0, 19), rand(2, 5));
 
-            $index = rand(0, 99);
-            $campaign = $this->getReference("campaign-$index");
+        foreach ($indexCampaigns as $value) {
+            $campaign = $this->getReference("campaign-{$value}");
 
-            if ($tag->getCampaigns()->exists(function ($key, $item) use ($campaign) {
-                return $campaign->getId() == $item->getId();
-            })
-            ) {
-                $index = rand(0, 99);
-                $campaign = $this->getReference("campaign-$index");
+            if ($campaign->getTags()->count() < 2) {
+                $campaign->getTags()->add($tag);
+                $tag->getCampaigns()->add($campaign);
             }
-
-            $tag->getCustomers()->add($campaign);
         }
     }
 

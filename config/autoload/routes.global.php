@@ -6,8 +6,12 @@ use CodeEmailMKT\Application\Action\Customer\{
 use CodeEmailMKT\Application\Action\Tag\{
     TagListPageAction, TagCreatePageAction, TagUpdatePageAction, TagDeletePageAction
 };
+use CodeEmailMKT\Application\Action\Campaign\{
+    CampaignListPageAction, CampaignCreatePageAction, CampaignUpdatePageAction, CampaignDeletePageAction
+};
 use CodeEmailMKT\Application\Action\Customer\Factory as Customer;
 use CodeEmailMKT\Application\Action\Tag\Factory as Tag;
+use CodeEmailMKT\Application\Action\Campaign\Factory as Campaign;
 use CodeEmailMKT\Application\Action;
 
 return [
@@ -31,6 +35,11 @@ return [
             TagCreatePageAction::class => Tag\TagCreatePageFactory::class,
             TagUpdatePageAction::class => Tag\TagUpdatePageFactory::class,
             TagDeletePageAction::class => Tag\TagDeletePageFactory::class,
+
+            CampaignListPageAction::class => Campaign\CampaignListPageFactory::class,
+            CampaignCreatePageAction::class => Campaign\CampaignCreatePageFactory::class,
+            CampaignUpdatePageAction::class => Campaign\CampaignUpdatePageFactory::class,
+            CampaignDeletePageAction::class => Campaign\CampaignDeletePageFactory::class,
         ],
     ],
 
@@ -125,6 +134,39 @@ return [
             'name' => 'tag.delete',
             'path' => '/admin/tags/{id}/delete',
             'middleware' => TagDeletePageAction::class,
+            'allowed_methods' => ['GET', 'DELETE'],
+            'options' => [
+                'tokens' => [
+                    'id' => '\d+'
+                ]
+            ]
+        ],
+        [
+            'name' => 'campaign.list',
+            'path' => '/admin/campaign',
+            'middleware' => CampaignListPageAction::class,
+            'allowed_methods' => ['GET'],
+        ],
+        [
+            'name' => 'campaign.create',
+            'path' => '/admin/campaign/create',
+            'middleware' => CampaignCreatePageAction::class,
+            'allowed_methods' => ['GET', 'POST']
+        ],
+        [
+            'name' => 'campaign.update',
+            'path' => '/admin/campaign/update/{id}',
+            'middleware' => CampaignUpdatePageAction::class,
+            'allowed_methods' => ['GET', 'PUT'],
+            'options' => [
+                'tokens' => ['id' => '\d+'
+                ]
+            ]
+        ],
+        [
+            'name' => 'campaign.delete',
+            'path' => '/admin/campaign/{id}/delete',
+            'middleware' => CampaignDeletePageAction::class,
             'allowed_methods' => ['GET', 'DELETE'],
             'options' => [
                 'tokens' => [
