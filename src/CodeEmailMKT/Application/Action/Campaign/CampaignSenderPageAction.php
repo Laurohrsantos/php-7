@@ -62,7 +62,7 @@ class CampaignSenderPageAction
             $this->emailSender->send();
 
             $flash = $request->getAttribute('flash');
-            $flash->setMessage(FlashMessageInterface::MESSAGE_SUCCESS, "Campanha enviada com sucesso!");
+            $flash->setMessage(FlashMessageInterface::MESSAGE_SUCCESS, "Campanha enviada!");
 
             $uri = $this->router->generateUri('campaign.list');
 

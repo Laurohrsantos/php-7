@@ -2,16 +2,9 @@
 
 namespace CodeEmailMKT\Application\Action\Campaign;
 
-use CodeEmailMKT\Application\Form\CampaignForm;
-use CodeEmailMKT\Domain\Service\CampaignEmailSenderInterface;
 use CodeEmailMKT\Domain\Service\CampaignReportInterface;
-use CodeEmailMKT\Domain\Service\FlashMessageInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use Zend\Diactoros\Response\HtmlResponse;
-use Zend\Diactoros\Response\RedirectResponse;
-use Zend\Expressive\Router\RouterInterface;
-use Zend\Expressive\Template;
 use CodeEmailMKT\Domain\Persistence\CampaignRepositoryInterface;
 
 class CampaignReportPageAction

@@ -2,9 +2,13 @@
 use CodeEmailMKT\Domain\Persistence\CampaignRepositoryInterface;
 use CodeEmailMKT\Domain\Persistence\TagRepositoryInterface;
 use CodeEmailMKT\Domain\Service\AuthInterface;
+use CodeEmailMKT\Domain\Service\CampaignEmailSenderInterface;
+use CodeEmailMKT\Domain\Service\CampaignReportInterface;
 use CodeEmailMKT\Infrastructure\Persistence\Doctrine\Repository\CampaignRepositoryFactory;
 use CodeEmailMKT\Infrastructure\Persistence\Doctrine\Repository\TagRepositoryFactory;
 use CodeEmailMKT\Infrastructure\Service;
+use CodeEmailMKT\Infrastructure\Service\CampaignEmailSenderFactory;
+use CodeEmailMKT\Infrastructure\Service\CampaignReportFactory;
 use CodeEmailMKT\Infrastructure\Service\MailgunFactory;
 use Mailgun\Mailgun;
 use Zend\Expressive\Application;
@@ -38,6 +42,8 @@ return [
             'doctrine:fixture_cmd:load' => \CodeEdu\FixtureFactory::class,
             AuthInterface::class => Service\AuthServiceFactory::class,
             Mailgun::class => MailgunFactory::class,
+            CampaignEmailSenderInterface::class => CampaignEmailSenderFactory::class,
+            CampaignReportInterface::class => CampaignReportFactory::class,
         ],
         'aliases' => [
             'Configuration' => 'config', //Doctrine needs a service called Configuration

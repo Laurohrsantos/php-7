@@ -41,7 +41,6 @@ class CustomerFixture extends AbstractFixture implements FixtureInterface, Order
             ['name' => 'Henrique Yahoo', 'email' => 'henrique_rodrigues_s@yahoo.com.br'],
             ['name' => 'Lauro Hotmail', 'email' => 'lauro.hrsantos@hotmail.com'],
             ['name' => 'Henrique hotmail', 'email' => 'henrique_1583@hotmail.com'],
-            ['name' => 'Henrique hotmail2', 'email' => 'henrique_1583@hotmail.com'],
             ['name' => 'Henrique Apoio', 'email' => 'henrique@apoiodesenvolvimento.com.br'],
         ];
     }

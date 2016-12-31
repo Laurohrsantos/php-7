@@ -7,7 +7,7 @@ use CodeEmailMKT\Application\Action\Tag\{
     TagListPageAction, TagCreatePageAction, TagUpdatePageAction, TagDeletePageAction
 };
 use CodeEmailMKT\Application\Action\Campaign\{
-    CampaignListPageAction, CampaignCreatePageAction, CampaignUpdatePageAction, CampaignDeletePageAction
+    CampaignListPageAction, CampaignCreatePageAction, CampaignUpdatePageAction, CampaignDeletePageAction, CampaignSenderPageAction, CampaignReportPageAction
 };
 use CodeEmailMKT\Application\Action\Customer\Factory as Customer;
 use CodeEmailMKT\Application\Action\Tag\Factory as Tag;
@@ -40,6 +40,8 @@ return [
             CampaignCreatePageAction::class => Campaign\CampaignCreatePageFactory::class,
             CampaignUpdatePageAction::class => Campaign\CampaignUpdatePageFactory::class,
             CampaignDeletePageAction::class => Campaign\CampaignDeletePageFactory::class,
+            CampaignSenderPageAction::class => Campaign\CampaignSenderPageFactory::class,
+            CampaignReportPageAction::class => Campaign\CampaignReportPageFactory::class,
         ],
     ],
 
@@ -168,6 +170,28 @@ return [
             'path' => '/admin/campaign/{id}/delete',
             'middleware' => CampaignDeletePageAction::class,
             'allowed_methods' => ['GET', 'DELETE'],
+            'options' => [
+                'tokens' => [
+                    'id' => '\d+'
+                ]
+            ]
+        ],
+        [
+            'name' => 'campaign.sender',
+            'path' => '/admin/campaign/sender/{id}',
+            'middleware' => CampaignSenderPageAction::class,
+            'allowed_methods' => ['GET', 'POST'],
+            'options' => [
+                'tokens' => [
+                    'id' => '\d+'
+                ]
+            ]
+        ],
+        [
+            'name' => 'campaign.report',
+            'path' => '/admin/campaigns/report/{id}',
+            'middleware' => CampaignReportPageAction::class,
+            'allowed_methods' => ['GET'],
             'options' => [
                 'tokens' => [
                     'id' => '\d+'
