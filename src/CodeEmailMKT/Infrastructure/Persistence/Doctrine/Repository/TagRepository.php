@@ -7,5 +7,9 @@ use CodeEmailMKT\Domain\Persistence\TagRepositoryInterface;
 class TagRepository extends AbstratcRepository implements TagRepositoryInterface
 {
 
+    use QueryBuilderTrait;
+
+    use RepositoryCriteriaTrait;
+
 }
 

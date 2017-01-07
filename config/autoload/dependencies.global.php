@@ -18,6 +18,8 @@ use CodeEmailMKT\Infrastructure\Persistence\Doctrine\Repository\CustomerReposito
 use CodeEmailMKT\Domain\Persistence\CustomerRepositoryInterface;
 use CodeEmailMKT\Domain\Service\FlashMessageInterface;
 use CodeEmailMKT\Infrastructure\Service\FlashMessageFactory;
+use CodeEmailMKT\Domain\Persistence\Criteria;
+use CodeEmailMKT\Infrastructure\Persistence\Doctrine\Repository\Criteria as CriteriaInfra;
 
 return [
     // Provides application-wide services.
@@ -30,6 +32,8 @@ return [
         'invokables' => [
             // Fully\Qualified\InterfaceName::class => Fully\Qualified\ClassName::class,
             Helper\ServerUrlHelper::class => Helper\ServerUrlHelper::class,
+            Criteria\FindByNameCriteriaInterface::class => CriteriaInfra\FindByNameCriteria::class,
+            Criteria\FindByIdCriteriaInterface::class => CriteriaInfra\FindByIdCriteria::class,
         ],
         // Use 'factories' for services provided by callbacks/factory classes.
         'factories' => [

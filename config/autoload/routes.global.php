@@ -114,7 +114,7 @@ return [
             'name' => 'tag.list',
             'path' => '/admin/tags',
             'middleware' => TagListPageAction::class,
-            'allowed_methods' => ['GET'],
+            'allowed_methods' => ['GET', 'POST'],
         ],
         [
             'name' => 'tag.create',

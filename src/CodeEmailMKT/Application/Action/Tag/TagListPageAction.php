@@ -2,6 +2,8 @@
 
 namespace CodeEmailMKT\Application\Action\Tag;
 
+use CodeEmailMKT\Domain\Persistence\Criteria\FindByIdCriteriaInterface;
+use CodeEmailMKT\Domain\Persistence\Criteria\FindByNameCriteriaInterface;
 use CodeEmailMKT\Domain\Service\FlashMessageInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Message\ResponseInterface;
@@ -16,15 +18,35 @@ class TagListPageAction
      * @var TagRepositoryInterface
      */
     private $repository;
+    /**
+     * @var FindByNameCriteriaInterface
+     */
+    private $findByNameCriteria;
+    /**
+     * @var FindByIdCriteriaInterface
+     */
+    private $findByIdCriteria;
 
-    public function __construct(TagRepositoryInterface $repository, Template\TemplateRendererInterface $template)
+    public function __construct
+    (
+        TagRepositoryInterface $repository,
+        Template\TemplateRendererInterface $template,
+        FindByNameCriteriaInterface $findByNameCriteria,
+        FindByIdCriteriaInterface $findByIdCriteria
+    )
     {
         $this->template = $template;
         $this->repository = $repository;
+        $this->findByNameCriteria = $findByNameCriteria;
+        $this->findByIdCriteria = $findByIdCriteria;
     }
 
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response, callable $next = null)
     {
+        $this->findByNameCriteria->setName('');
+        $this->findByIdCriteria->setId('101');
+        $this->repository->add($this->findByNameCriteria);
+        $this->repository->add($this->findByIdCriteria);
         $tags = $this->repository->findAll();
         $flash = $request->getAttribute('flash');
 
