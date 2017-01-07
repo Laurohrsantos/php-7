@@ -41,7 +41,7 @@
                                     <span class="info-box-text">Criado em: <b>{{ campaign_data.created_at | date('d/m/Y') }}</b></span>
                                     <br>
                                     <span class="info-box-number">
-                                        <a class="btn bg-yellow-active" href="#">Visualizar e-mail</a>&nbsp;
+                                        <a class="btn bg-yellow-active" href="{{ url('campaign.update', {id: campaign.id}) }}">Visualizar e-mail</a>&nbsp;
                                         <a class="btn bg-yellow-active" href="#">Imprimir</a>
                                     </span>
                                 </div>
